@@ -1,4 +1,4 @@
-# Smart Household Energy Consumption Forecasting (ML + LSTM + MLOps)
+# Smart Household Energy Consumption Forecasting 
 
 This project implements an end-to-end, production-grade system for forecasting household electricity consumption using machine learning, deep learning, and modern MLOps practices. It demonstrates the full lifecycle of a real-world forecasting pipeline: data handling, feature engineering, modeling, deployment, and automation.
 
