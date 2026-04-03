@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  airflow:
+    image: apache/airflow:2.7.1
+    container_name: airflow
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../airflow/dags:/opt/airflow/dags
+      - .:/opt/airflow/project
+      - airflow_db:/opt/airflow
+    environment:
+      - AIRFLOW_CORE_LOAD_EXAMPLES=False
+    command: >
+      bash -c "
+      airflow db migrate &&
+      airflow users create --username airflow --password airflow --firstname admin
+      --lastname admin --role Admin --email admin@example.com && 
+      airflow webserver & airflow scheduler"
+
+volumes:
+  airflow_db: {}
