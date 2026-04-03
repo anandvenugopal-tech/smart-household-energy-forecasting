@@ -1,0 +1,16 @@
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+lightgbm
+tensorflow
+torch
+pydantic
+fastapi
+uvicorn
+requests
+python-dotenv
+joblib
+apache-airflow
+streamlit
