@@ -1,77 +1,73 @@
-# Smart Household Energy Consumption Forecasting 
+# Smart Household Energy Consumption Forecasting
 
-This project implements an end-to-end, production-grade system for forecasting household electricity consumption using machine learning, deep learning, and modern MLOps practices. It demonstrates the full lifecycle of a real-world forecasting pipeline: data handling, feature engineering, modeling, deployment, and automation.
-
-The solution combines traditional regression models with LSTM-based deep learning to capture both short-term and long-term consumption patterns. The system is modular, scalable, and designed to operate in a continuous retraining environment using Apache Airflow for workflow orchestration and FastAPI for model serving.
-
----
-
-## Key Features
-
-- Complete data pipeline for ingestion, cleaning, and transformation  
-- Comprehensive exploratory and advanced visual analysis  
-- Feature engineering for ML and deep learning models  
-- Machine learning forecasting using multiple regression algorithms  
-- Deep learning sequence modeling using LSTM  
-- Behavioral load pattern clustering for deeper insights  
-- Modular Python codebase designed for production  
-- REST API for real-time inference using FastAPI  
-- Automated retraining and pipeline management using Apache Airflow  
-- Docker-enabled reproducible environment for development and deployment  
+## Overview
+This project focuses on predicting household energy consumption using historical time-series data. It compares traditional machine learning models with a deep learning approach (LSTM) and builds a simple pipeline for training and evaluation.
 
 ---
 
-## Modeling Overview
-
-### Machine Learning Models  
-The project includes multiple regression models to benchmark classical approaches against deep learning, including:  
-- Linear Regression  
-- Random Forest  
-- Gradient Boosting (XGBoost, LightGBM)  
-- KNN Regression  
-
-### Deep Learning  
-A sequence modeling approach using LSTM captures temporal dependencies and improves forecasting accuracy in multi-step and minute-level prediction tasks.
-
-### Clustering  
-Consumption patterns are analyzed using unsupervised clustering techniques, such as:  
-- K-Means  
-- DBSCAN  
-These methods help uncover daily usage behaviors and consumer segments.
+## Problem Statement
+Given past electricity usage data, predict future energy consumption. This can help in understanding usage patterns and planning energy usage more efficiently.
 
 ---
 
-## MLOps Workflow
+## Approach
 
-The project uses Apache Airflow to orchestrate all core pipeline tasks, enabling continuous, automated learning.  
-Automated stages include:  
-- Scheduled data ingestion  
-- Cleaning and feature updates  
-- Model retraining  
-- Saving updated model artifacts  
-- Refreshing the prediction API with the latest model  
-
-FastAPI exposes the forecasting model through an endpoint for real-time consumption predictions, suitable for integration into dashboards or energy management systems.
+### 1. Data Processing
+- Cleaned the dataset by handling missing values
+- Converted relevant columns to numeric format
+- Prepared time-series data for modeling
 
 ---
 
-## Technical Highlights
+### 2. Machine Learning Models
+- Linear Regression (baseline)
+- Decision Tree
+- Random Forest
 
-- Demonstrates end-to-end ML, DL, and MLOps in a single project  
-- Separation of experimentation (notebooks) and production-ready code (src/)  
-- Fully modular pipeline allowing rapid iteration and scalable deployment  
-- Supports both traditional ML workflows and modern deep learning pipelines  
-- Designed for real-world deployment with automated monitoring and updates  
+Steps performed:
+- Model comparison using MAE
+- Hyperparameter tuning using GridSearchCV
+- Selected best-performing model
+
+---
+
+### 3. Deep Learning Model (LSTM)
+- Built using PyTorch
+- Created sequences using sliding window approach
+- Applied MinMax scaling
+- Trained model to learn temporal patterns
 
 ---
 
-## Future Enhancements
-
-- Integration of transformer-based forecasting models  
-- Model experiment tracking using MLflow  
-- Real-time data ingestion through streaming platforms  
-- Cloud deployment on AWS/GCP/Azure  
-- Monitoring dashboards using Prometheus and Grafana  
+### 4. Evaluation
+- Used Mean Absolute Error (MAE)
+- Compared ML models vs LSTM
+- Converted predictions back to original scale before evaluation
 
 ---
+
+### 5. Workflow Automation
+- Used Apache Airflow to organize steps:
+  - Data ingestion
+  - Cleaning
+  - Model training
+  - Evaluation
+
+---
+
+### 6. Deployment Setup
+- Built a simple API using FastAPI for predictions
+- Used Docker to containerize the application
+
+---
+
+## Results
+- Random Forest performed well among traditional models
+- LSTM captured time dependencies but required more tuning
+- Final model selected based on lowest MAE and stability
+
+---
+
+## Conclusion
+This project demonstrates how different modeling approaches perform on time-series data and highlights the trade-off between simplicity and performance. It also shows how to structure a basic ML pipeline with training, evaluation, and deployment components.
 
